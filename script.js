@@ -17,7 +17,7 @@ function drawWheel() {
 
   names.forEach((n, i) => {
     ctx.beginPath();
-    ctx.fillStyle = i % 2 ? "#c1121f" : "#1b4332";
+    ctx.fillStyle = i % 2 ? "#b11226" : "#1b5e20";
     ctx.moveTo(r, r);
     ctx.arc(r, r, r, slice * i, slice * (i + 1));
     ctx.fill();
@@ -26,30 +26,29 @@ function drawWheel() {
     ctx.translate(r, r);
     ctx.rotate(slice * i + slice / 2);
     ctx.fillStyle = "white";
-    ctx.font = "14px Arial";
-    ctx.fillText(n, r / 2.3, 5);
+    ctx.font = "15px Arial";
+    ctx.fillText(n, r / 2.2, 5);
     ctx.restore();
   });
 }
 
 function spin() {
-  let spins = 25;
+  let spins = 30;
+
   let interval = setInterval(() => {
-    angle += 0.4;
+    angle += 0.35;
     ctx.save();
     ctx.translate(r, r);
     ctx.rotate(angle);
     ctx.translate(-r, -r);
     drawWheel();
     ctx.restore();
-
     spins--;
     if (spins <= 0) clearInterval(interval);
   }, 80);
 
-  // 🎯 FIXED RESULT
   setTimeout(() => {
     document.getElementById("result").innerText =
-      "🎄 Your Secret Santa is: GILES";
-  }, 2200);
+      "🎁 Your Secret Santa is: GILES";
+  }, 2600);
 }
