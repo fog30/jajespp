@@ -1,25 +1,41 @@
+// Full names
 const names = [
-  "James","Margaret","Muriel","Fergal",
-  "Jess","Hilda","Giles","Shannon","Anna",
-  "Treza","Alister","Contrad"
+  "James", "Margaret", "Muriel", "Fergal",
+  "Jess", "Hilda", "Giles", "Shannon", "Anna",
+  "Treza", "Alister", "Contrad"
 ];
 
-// show moving names
-const wheel = document.getElementById("wheel");
-const result = document.getElementById("result");
+// Fixed result
+const fixedResult = "Giles";
 
-let i = 0;
+// Match first 3 letters to full name
+function getFullName(short) {
+  return names.find(n => n.toLowerCase().startsWith(short));
+}
 
-// spin animation
-const spin = setInterval(() => {
-  wheel.innerText = names[i % names.length];
-  i++;
-}, 120);
+function spin() {
+  const short = localStorage.getItem("playerShort");
+  const player = getFullName(short);
 
-// stop on JESS
-setTimeout(() => {
-  clearInterval(spin);
-  wheel.innerText = "Giles";
-  result.innerText = "🎁 You got: Giles";
-}, 3000);
+  if (!player) {
+    alert("Invalid name");
+    return;
+  }
 
+  // Fake spinning animation
+  const wheel = document.getElementById("wheel");
+  let i = 0;
+
+  const interval = setInterval(() => {
+    wheel.innerText = names[i % names.length];
+    i++;
+  }, 100);
+
+  setTimeout(() => {
+    clearInterval(interval);
+
+    wheel.innerText = fixedResult;
+    document.getElementById("result").innerText =
+      "🎁 You got: " + fixedResult;
+  }, 2500);
+}
