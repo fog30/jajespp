@@ -19,6 +19,7 @@ const spin = setInterval(() => {
 // stop on JESS
 setTimeout(() => {
   clearInterval(spin);
-  wheel.innerText = "Jess";
-  result.innerText = "🎁 You got: JESS";
+  wheel.innerText = "Giles";
+  result.innerText = "🎁 You got: Giles";
 }, 3000);
+
